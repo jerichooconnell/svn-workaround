@@ -1,0 +1,33 @@
+moments is a python package for working with PPM FVandMoms48 data.
+
+To install an editable version of this package run the command
+
+    sudo pip install -e .
+
+To install without root use the command
+
+    pip install --user -e .
+
+To create a tarball that can be installed with pip run the command, it will be located in the directory "./dist"
+
+    python setup.py sdist
+
+examples
+--------
+import moments
+from matplotlib import pyplot
+
+data = moments.Moments("/npod2/users/lsiemens/PPM/D15")
+print(data.fields)#print list of fields
+print(data.cycles)#print list of cycles
+Rho = data.get("Rho", 175)
+
+pyplot.plot(data.raxis, moments.radprof(Rho))
+pyplot.show()
+
+testing
+-------
+There are some unit test in ./moments/tests. To run the tests use the command,
+
+    python setup.py test
+
